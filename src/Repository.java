@@ -18,22 +18,22 @@ public class Repository {
         this.bancoDeDados = new JSONObject(this.tokener);
     }
 
-    public void GetUserbyId(int id){
+    public void GetUserbyId(int id) {
         try {
             JSONArray usuarios = bancoDeDados.getJSONArray("pessoas");
             System.out.println("usuario encontrado:");
             // Itere sobre os registros e exiba os dados
             for (int i = 0; i < usuarios.length(); i++) {
                 JSONObject pessoa = usuarios.getJSONObject(i);
-                if(pessoa.getInt("id") == id){
-                String nome = pessoa.getString("nome");
-                int idade = pessoa.getInt("idade");
-                System.out.println("ID: " + id);
-                System.out.println("Nome: " + nome);
-                System.out.println("Idade: " + idade);
-                System.out.println("*---------*");
+                if (pessoa.getInt("id") == id) {
+                    String nome = pessoa.getString("nome");
+                    int idade = pessoa.getInt("idade");
+                    System.out.println("ID: " + id);
+                    System.out.println("Nome: " + nome);
+                    System.out.println("Idade: " + idade);
+                    System.out.println("*---------*");
                 }
-               
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -139,8 +139,7 @@ public class Repository {
             e.printStackTrace();
         }
     }
-   
-   
+
     public void updateUser(int id, String nome, int idade) {
         try {
             JSONArray usuarios = bancoDeDados.getJSONArray("pessoas");
@@ -150,16 +149,14 @@ public class Repository {
                     System.out.println("ID " + id + " já existe. Atualizando informações.");
                     pessoa.put("nome", nome);
                     pessoa.put("idade", idade);
-                    
+
                     break;
                 }
             }
-            
             savedata();
         } catch (Exception e) {
             throw new RuntimeException("Usuário não existe no banco de dados, tente adicionar um existente");
         }
     }
-
 
 }

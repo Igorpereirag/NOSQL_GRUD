@@ -40,7 +40,7 @@ public class Repository {
         }
     }
 
-    public void GetUsuarios() {
+    public void Getalluses() {
         try {
             JSONArray usuarios = bancoDeDados.getJSONArray("pessoas");
             System.out.println("Registros no banco de dados:");

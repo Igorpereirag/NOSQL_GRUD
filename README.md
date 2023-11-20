@@ -1,6 +1,6 @@
 *Java JSON User Database App*
 
-Este é um aplicativo simples em Java que manipular um banco de dados em JSON para armazenar informações de usuários. Cada usuário é representado por um objeto JSON contendo um ID único, nome e idade.
+Este é um aplicativo simples em Java que manipular um banco de dados em JSON que armazenar informações de usuários. Cada usuário é representado por um objeto JSON contendo um ID único, nome e idade.
 
 Funcionalidades:
 

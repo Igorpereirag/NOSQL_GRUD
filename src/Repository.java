@@ -143,10 +143,9 @@ public class Repository {
    
     public void updateUser(int id, String nome, int idade) {
         try {
-            // Verificar se o ID já existe
-         
+            JSONArray usuarios = bancoDeDados.getJSONArray("pessoas");
             for (int i = 0; i < bancoDeDados.length(); i++) {
-                JSONObject pessoa = bancoDeDados.getJSONObject(i);
+                JSONObject pessoa = usuarios.getJSONObject(i);
                 if (pessoa.getInt("id") == id) {
                     System.out.println("ID " + id + " já existe. Atualizando informações.");
                     pessoa.put("nome", nome);
@@ -158,7 +157,7 @@ public class Repository {
             
             savedata();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException("Usuário não existe no banco de dados, tente adicionar um existente");
         }
     }
 

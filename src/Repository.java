@@ -20,28 +20,34 @@ public class Repository {
 
     public void GetUserbyId(int id) {
         try {
-            JSONArray usuarios = bancoDeDados.getJSONArray("pessoas");           
+            JSONArray usuarios = bancoDeDados.getJSONArray("pessoas");
+            boolean usuarioEncontrado = false;
+    
             // Itere sobre os registros e exiba os dados
             for (int i = 0; i < usuarios.length(); i++) {
                 JSONObject pessoa = usuarios.getJSONObject(i);
                 if (pessoa.getInt("id") == id) {
                     String nome = pessoa.getString("nome");
                     int idade = pessoa.getInt("idade");
-                    System.out.println("usuario encontrado:");
+                    System.out.println("Usuário encontrado:");
                     System.out.println("ID: " + id);
                     System.out.println("Nome: " + nome);
                     System.out.println("Idade: " + idade);
                     System.out.println("*---------*");
-                    
-                }else{
-                    throw new RuntimeException("user not found");
-
+                    usuarioEncontrado = true;
+                    break; // Se o usuário é encontrado, não precisa continuar procurando.
                 }
             }
-        }catch  (Exception generalException) {
-            // Lança uma exceção mais descritiva e inclui a causa raiz.
-            throw new RuntimeException("usuário não encontrado no banco de dados", generalException);
-        }
+    
+            if (!usuarioEncontrado) {
+                // Se o usuário não for encontrado, lance uma exceção específica.
+               System.out.println("user not found");
+            }
+        } catch (Exception exception) {
+            // Trate exceções específicas relacionadas ao processamento JSON.
+            throw new RuntimeException("Erro ao processar JSON");
+            
+       } 
     }
 
     public void Getalluses() {
